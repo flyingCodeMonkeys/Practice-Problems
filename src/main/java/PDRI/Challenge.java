@@ -1,4 +1,4 @@
-package PDRI_assesment;
+package PDRI;
 
 public class Challenge {
     public static long multiply(long a, long b) {

@@ -1,52 +1,89 @@
 package MedianSortedArrays;
 
 //Median is the element that partitions the arrays in half
+//Calculate the median of both arrays & discard half of each array
+
+/**
+ *
+ */
 public class Solution {
 
     public double findMedianSortedArrays(int[] A, int[] B) {
-        int x = A.length;
-        int y = B.length;
-        if(x < y) {
-            int[] tmp = A;
-            A = B;
-            B = tmp;
-            int z = x;
-            x = y;
-            y = z;
-        }
 
-        int iMin = 0;
-        int iMax = x;
-        int half = (x + y + 1) / 2;
-
-
-//        while(iMin )
-//
-//        int low = 0;
-//        int high = x - 1;
-//
-//        for(int i = 0; i < B.length; i++) {
-//            if(A[high] <)
+//        int x = A.length;
+//        int y = B.length;
+//        int length = x + y;
+//        if(x < y) {
+//            int[] tmp = A;
+//            A = B;
+//            B = tmp;
+//            int z = x;
+//            x = y;
+//            y = z;
 //        }
 //
-//        return 0;
-    }
+//        int iMin = 0;
+//        int iMax = x;
+//        int half = (x + y + 1) / 2;
+//        int[] result = new int[half];
+//        int minidx = 0;
+//        int maxidx = n;
+//        int i = 0, j = 0;
 
-    private double medSortedHelper(int[] firstArr, int firstLeft, int firstRight, int[] secArr) {
-        int firstMid = (firstRight + firstLeft) / 2;
-        int secMid = (secArr.length - 1)/2 - firstMid + (firstArr.length - 1) / 2;
+        int x = A.length;
+        int y = B.length;
+        int totalLength = x + y;
 
-        double median = 0;
-
-        if(firstRight - firstLeft <= 1) {
-            int[] temp;
+        if(x > y) {
+            int[] temp = A;
+            A = B;
+            B = temp;
         }
-        return median;
+
+        int low = 0;
+        int max = A.length;
+        while(low <= max) {
+            int partition1 = (low + max) / 2;
+            int partition2 = (totalLength + 1) / 2 - partition1;
+
+            int leftHalf1  = getMax(A, partition1);
+            int rightHalf1 = getMin(A, partition1);
+
+            int leftHalf2  = getMax(B, partition2);
+            int rightHalf2 = getMin(B, partition2);
+
+            if(leftHalf1 <= rightHalf2 && leftHalf2 <= rightHalf1){
+                if(totalLength % 2 == 0){
+                    return (Math.max(leftHalf1, leftHalf2) + Math.min(rightHalf1, rightHalf2)) / 2.0;
+                }
+                return Math.max(leftHalf1, leftHalf2);
+            }
+            if(leftHalf1 > rightHalf2) {
+                max = partition1 - 1;
+            }
+            else {
+                low = partition1 - 1;
+            }
+        }
+        return -1;
     }
 
-    private double median(int[] Arr) {
-        int l = Arr.length;
-        return (Arr.length % 2 == 0) ? Arr[(l - 1 )/ 2] : (Arr[(l - 1)/2] + Arr[(l - 1)/2 + 1])/2;
+    private int getMin(int[] array, int partition) {
+        if(partition == array.length) {
+            return (int)Double.POSITIVE_INFINITY;
+        }
+        else {
+            return array[partition];
+        }
+    }
+
+    private int getMax(int[] array, int partition) {
+        if(partition == array.length) {
+            return (int)Double.POSITIVE_INFINITY;
+        }
+        else {
+            return array[partition - 1];
+        }
     }
 
 }

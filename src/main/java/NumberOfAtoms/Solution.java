@@ -18,6 +18,7 @@ public class Solution {
                 map = new HashMap<>();
             }
         }
+        return "";
     }
 
     private class Atom {

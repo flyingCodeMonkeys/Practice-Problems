@@ -1,4 +1,4 @@
-package PDRI_assesment;
+package PDRI;
 
 import java.util.Arrays;
 import java.util.List;
