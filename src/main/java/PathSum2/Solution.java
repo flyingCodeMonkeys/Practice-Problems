@@ -39,7 +39,7 @@ public class Solution {
          dfsFindAnswer(root.right, target - root.val,
                 answer, result);
 
-            answer.remove(answer.size() - 1);
+         answer.remove(answer.size() - 1);
 
      }
 }
